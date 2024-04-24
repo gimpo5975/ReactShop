@@ -1,7 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import { Button, Navbar, Container, Nav, Row, Col } from "react-bootstrap";
 
 function App() {
+  
+  let [cloth] = useState();
+
   return (
     <div className="App">
       {/*                  NavBar                */}
@@ -25,25 +29,25 @@ function App() {
 // 컨텐츠 함수
 function Content() {
   return (
-    <Container>
-      <Row>
-        <Col>
-          <img src= {process.env.PUBLIC_URL+'/img/ct1.png'} />
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-4">
+          <img src={process.env.PUBLIC_URL + "/img/ct1.png"} />
           <h4>상품명</h4>
           <p>상품설명</p>
-        </Col>
-        <Col>
-          <img src={process.env.PUBLIC_URL+'/img/ct2.jpg'} />
+        </div>
+        <div className="col-md-4">
+          <img src={process.env.PUBLIC_URL + "/img/ct2.png"} />
           <h4>상품명</h4>
           <p>상품설명</p>
-        </Col>
-        <Col>
-          <img src={process.env.PUBLIC_URL+'/img/ct3.jpg'} />
+        </div>
+        <div className="col-md-4">
+          <img src={process.env.PUBLIC_URL + "/img/ct3.png"} />
           <h4>상품명</h4>
           <p>상품설명</p>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }
 export default App;
