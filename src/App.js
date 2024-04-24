@@ -24,7 +24,7 @@ function App() {
       <div className="main-bg  "></div>
       <div className="container-fluid">
         <div className="row">
-          {cloth.map(function (cloth, i) {
+          {cloth.map((cloth, i) => {
             return (
               <React.Fragment key={i}>
                 <Card cloth={cloth} i={i} />
@@ -40,13 +40,12 @@ function App() {
 function Card(props) {
   return (
     <div className="col-md-4">
-      <img src={process.env.PUBLIC_URL + '/img/ct'+(props.i+1)+'.png'} />
+      <img src={process.env.PUBLIC_URL + "/img/ct" + (props.i + 1) + ".png"} />
       <h4>{props.cloth.title}</h4>
       <p>{props.cloth.content}</p>
       <p>{props.cloth.price}</p>
     </div>
   );
 }
-
 
 export default App;
