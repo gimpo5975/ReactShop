@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 import { Button, Navbar, Container, Nav, Row, Col } from "react-bootstrap";
+import data from "./Data";
+import React from "react";
 
 function App() {
-  
-  let [cloth] = useState();
-
+  let [cloth] = useState(data);
   return (
     <div className="App">
       {/*                  NavBar                */}
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar>
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
@@ -22,32 +22,31 @@ function App() {
       {/*                  //NavBar                */}
       {/* 메인 배경 이미지 */}
       <div className="main-bg  "></div>
-      <Content />
-    </div>
-  );
-}
-// 컨텐츠 함수
-function Content() {
-  return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-4">
-          <img src={process.env.PUBLIC_URL + "/img/ct1.png"} />
-          <h4>상품명</h4>
-          <p>상품설명</p>
-        </div>
-        <div className="col-md-4">
-          <img src={process.env.PUBLIC_URL + "/img/ct2.png"} />
-          <h4>상품명</h4>
-          <p>상품설명</p>
-        </div>
-        <div className="col-md-4">
-          <img src={process.env.PUBLIC_URL + "/img/ct3.png"} />
-          <h4>상품명</h4>
-          <p>상품설명</p>
+      <div className="container-fluid">
+        <div className="row">
+          {cloth.map(function (cloth, i) {
+            return (
+              <React.Fragment key={i}>
+                <Card cloth={cloth} i={i} />
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 }
+
+function Card(props) {
+  return (
+    <div className="col-md-4">
+      <img src={process.env.PUBLIC_URL + '/img/ct'+(props.i+1)+'.png'} />
+      <h4>{props.cloth.title}</h4>
+      <p>{props.cloth.content}</p>
+      <p>{props.cloth.price}</p>
+    </div>
+  );
+}
+
+
 export default App;
