@@ -17,11 +17,35 @@ function App() {
       {/*                  NavBar                */}
       <Navbar>
         <Container>
-          <Navbar.Brand onClick={()=>{navigate('/')}}>KwjShop</Navbar.Brand>
+          <Navbar.Brand
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            KwjShop
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>
-            <Nav.Link onClick={()=>{navigate('/detail')}}>Detail</Nav.Link>
-            <Nav.Link onClick={()=>{navigate('/about')}}>About</Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Home
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/detail");
+              }}
+            >
+              Detail
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/about");
+              }}
+            >
+              About
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -49,23 +73,24 @@ function App() {
           }
         />
         {/* //메인 페이지 라우터 */}
-        
-        <Route path="/detail" element={<Detai/>} />
-        <Route path="/about" element={<About/>}/>
-        <Route path="*" element={<Page404/>}/>
+
+        <Route path="/detail" element={<Detai />} />
+        <Route path="/about" element={<About />}>
+          <Route path="member" element={<About />} />
+          <Route path="location" element={<About />} />
+        </Route>
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
   );
-}// end of App
+} // end of App
 
-
-function About(){
-  return(
+function About() {
+  return (
     <div>
       <h4>회사정보</h4>
     </div>
-  )
-}//end of About
-
+  );
+} //end of About
 
 export default App;
