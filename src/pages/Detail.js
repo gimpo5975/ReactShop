@@ -19,10 +19,14 @@ let Box =  styled.div`
 function Detail(props) {
 
   useEffect(()=> {
-    setTimeout(()=> {
+   let timer = setTimeout(()=> {
       setAlert(false)
     }, 2000)
-  })
+
+    return()=>{
+      clearTimeout(timer)
+    }
+  },[])
 
   let [alert, setAlert] = useState(true)
   let {id} = useParams();
