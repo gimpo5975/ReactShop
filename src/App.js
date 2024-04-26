@@ -7,9 +7,10 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Card from "./Components/Card";
 import Page404 from "./Components/Page404";
 import Detail from "./pages/Detail";
+import axios from "axios";
 
 function App() {
-  let [cloth] = useState(data);
+  let [cloth, setCloth] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -69,15 +70,20 @@ function App() {
                 <div className="row">
                   {cloth.map((cloth, i) => {
                     return (
-                      <React.Fragment key={i}>
-                        <Card cloth={cloth} i={i} />
-                      </React.Fragment>
+                        <Card cloth={cloth} i={i} key={i}/>
                     );
                   })}
                 </div>
               </div>
               <button onClick={()=>{
-                
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((data2)=>{
+                  let cpCloth = [...cloth, ...data2.data]
+                  setCloth(cpCloth)
+                })
+                .catch(()=>{
+                  alert('서버 요청 실패')
+                })
               }}>더보기</button>
             </>
           }
