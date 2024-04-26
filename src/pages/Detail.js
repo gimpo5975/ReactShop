@@ -21,9 +21,11 @@ function Detail(props) {
   useEffect(()=> {
    let timer = setTimeout(()=> {
       setAlert(false)
+      console.log(2)
     }, 2000)
 
     return()=>{
+      console.log(1)//클린업 함수가 먼저 작동
       clearTimeout(timer)
     }
   },[])
