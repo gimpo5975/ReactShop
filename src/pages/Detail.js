@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,7 +15,14 @@ let Box =  styled.div`
   padding : 20px;
 `
 
+
 function Detail(props) {
+
+  useEffect(()=> {
+    console.log('하이')
+  })
+
+  let [count, setCount] = useState(0)
 
   let {id} = useParams();
   let findId = props.cloth.find(function(x){
@@ -24,7 +32,8 @@ function Detail(props) {
     return (
       <>
         <div className="container">
-
+          {count}
+          <button onClick={()=>{setCount(count+1)}}>버튼</button>
           <div className="row">
             <Box/>
             <div className="col-md-6">
