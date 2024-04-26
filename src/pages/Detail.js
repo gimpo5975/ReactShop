@@ -20,11 +20,11 @@ function Detail(props) {
 
   useEffect(()=> {
     setTimeout(()=> {
-      setStyle({display:'none'})
+      setAlert(false)
     }, 2000)
   })
 
-  let [style, setStyle] = useState({display:'block'})
+  let [alert, setAlert] = useState(true)
   let {id} = useParams();
   let findId = props.cloth.find(function(x){
     return x.id == id
@@ -33,9 +33,14 @@ function Detail(props) {
     return (
       <>
         <div className="container">
-          <div className="alert alert-warning" style={style}>
+          {
+            alert == true ?
+            <div className="alert alert-warning">
             2초이내 구매시 할인
-          </div>
+            </div>
+             :null 
+        }
+          
           <div className="row">
             <Box/>
             <div className="col-md-6">
