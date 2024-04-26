@@ -4,9 +4,9 @@ import { Button, Navbar, Container, Nav, Row, Col } from "react-bootstrap";
 import data from "./Data";
 import React from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import Detai from "./pages/Detail";
 import Card from "./Components/Card";
 import Page404 from "./Components/Page404";
+import Detail from "./pages/Detail";
 
 function App() {
   let [cloth] = useState(data);
@@ -46,6 +46,13 @@ function App() {
             >
               About
             </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/event");
+              }}
+            >
+              Event
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -74,11 +81,16 @@ function App() {
         />
         {/* //메인 페이지 라우터 */}
 
-        <Route path="/detail" element={<Detai />} />
+        <Route path="/detail/:id" element={<Detail cloth={cloth} />} />
         <Route path="/about" element={<About />}>
-          <Route path="member" element={<About />} />
-          <Route path="location" element={<About />} />
+          <Route path="member" element={<div>멤버</div>} />
+          <Route path="location" element={<div>로케이션</div>} />
         </Route>
+        <Route path="/event" element={<Event/>}>
+          <Route path="one" element={<div>첫 주문시 양배추즙 서비스</div>}/>
+          <Route path="two" element={<div>생일기념 쿠폰 받기</div>}/>
+        </Route>
+
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
@@ -89,8 +101,18 @@ function About() {
   return (
     <div>
       <h4>회사정보</h4>
+      <Outlet></Outlet>
     </div>
   );
 } //end of About
+
+function Event(){
+  return(
+      <>
+      <h2>오늘의 이벤트</h2>
+      <Outlet></Outlet>
+      </>
+  );
+}
 
 export default App;
