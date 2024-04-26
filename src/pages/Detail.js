@@ -19,11 +19,12 @@ let Box =  styled.div`
 function Detail(props) {
 
   useEffect(()=> {
-    console.log('하이')
+    setTimeout(()=> {
+      setStyle({display:'none'})
+    }, 2000)
   })
 
-  let [count, setCount] = useState(0)
-
+  let [style, setStyle] = useState({display:'block'})
   let {id} = useParams();
   let findId = props.cloth.find(function(x){
     return x.id == id
@@ -32,8 +33,9 @@ function Detail(props) {
     return (
       <>
         <div className="container">
-          {count}
-          <button onClick={()=>{setCount(count+1)}}>버튼</button>
+          <div className="alert alert-warning" style={style}>
+            2초이내 구매시 할인
+          </div>
           <div className="row">
             <Box/>
             <div className="col-md-6">
