@@ -18,9 +18,16 @@ let Box =  styled.div`
 
 function Detail(props) {
 
+  let [num, setNum] = useState('')
+  let [text, setText] = useState(true)
+  let {id} = useParams();
+  let findId = props.cloth.find(function(x){
+    return x.id == id
+  })
+
   useEffect(()=> {
    let timer = setTimeout(()=> {
-      setAlert(false)
+      setText(false)
       console.log(2)
     }, 2000)
 
@@ -30,23 +37,25 @@ function Detail(props) {
     }
   },[])
 
-  let [alert, setAlert] = useState(true)
-  let {id} = useParams();
-  let findId = props.cloth.find(function(x){
-    return x.id == id
-  })
+  useEffect(()=>{
+    if (isNaN(num) == true){
+      alert('그러지마세요')
+    }
+  }, [num])
+
+
 
     return (
       <>
         <div className="container">
           {
-            alert == true ?
+            text == true ?
             <div className="alert alert-warning">
             2초이내 구매시 할인
             </div>
              :null 
         }
-          
+           
           <div className="row">
             <Box/>
             <div className="col-md-6">
@@ -56,6 +65,7 @@ function Detail(props) {
               />
             </div>
             <div className="col-md-6">
+              <input onChange={(e)=>{setNum(e.target.value)}} />
               <h4 className="pt-5">{findId.title}</h4>
               <p>{findId.content}</p>
               <p>{findId.price}</p>

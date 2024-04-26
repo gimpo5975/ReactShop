@@ -76,6 +76,9 @@ function App() {
                   })}
                 </div>
               </div>
+              <button onClick={()=>{
+                
+              }}>더보기</button>
             </>
           }
         />
