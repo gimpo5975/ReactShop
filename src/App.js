@@ -80,6 +80,7 @@ function App() {
                 .then((data2)=>{
                   let cpCloth = [...cloth, ...data2.data]
                   setCloth(cpCloth)
+                  console.log(data2)
                 })
                 .catch(()=>{
                   alert('서버 요청 실패')

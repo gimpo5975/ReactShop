@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Nav  } from "react-bootstrap";
 
 let YellowBtn = styled.button`
 background : yellow;
@@ -24,6 +25,7 @@ function Detail(props) {
   let findId = props.cloth.find(function(x){
     return x.id == id
   })
+  let [tab, setTab] = useState(0);
 
   useEffect(()=> {
    let timer = setTimeout(()=> {
@@ -74,8 +76,36 @@ function Detail(props) {
             </div>
             <Box/>
           </div>
+          {/* end of row */}
+          {/* 탭 */}
+          <Nav fill variant="tabs" defaultActiveKey="link0">
+            <Nav.Item>
+              <Nav.Link eventKey="link0" onClick={()=> setTab(0)}>0번</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link1" onClick={()=>setTab(1)}>1번</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link2" onClick={()=>setTab(2)}>2번</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <TabContent tab={tab}/>
+          {/* end of 탭 */}
         </div>
+        {/* end of container */}
       </>
     );
   }
+//Tab 누를때마다 그 탭에 해당하는 내용 출력
+function TabContent({tab}){
+  // if(tab == 0){
+  //  return <div>내용0</div>
+  // }else if(tab == 1){
+  //   return<div>내용1</div>
+  // }else if(tab == 2){
+  //   return <div>내용2</div>
+  // }//end of if
+  return [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab]
+}
+
   export default Detail;
