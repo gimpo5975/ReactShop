@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Nav  } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../store";
 
 let YellowBtn = styled.button`
 background : yellow;
@@ -27,6 +29,8 @@ function Detail(props) {
   })
   let [tab, setTab] = useState(0);
   let [fade2, setFade2] = useState('')
+  let cart = useSelector((state)=>state.cart)
+  let dispatch = useDispatch()
 
   useEffect(()=>{
     setFade2('end')
@@ -80,7 +84,9 @@ function Detail(props) {
               <p>{findId.content}</p>
               <p>{findId.price}</p>
               <button className="btn btn-primary">주문하기</button>
-              <YellowBtn>장바구니</YellowBtn>
+              <YellowBtn onClick={()=>{
+                dispatch(addProduct({id:findId.id, name:findId.title, count:1}))
+              }}>장바구니</YellowBtn>
             </div>
             <Box/>
           </div>
