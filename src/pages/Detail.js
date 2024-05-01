@@ -26,6 +26,14 @@ function Detail(props) {
     return x.id == id
   })
   let [tab, setTab] = useState(0);
+  let [fade2, setFade2] = useState('')
+
+  useEffect(()=>{
+    setFade2('end')
+    return()=>{
+      setFade2('')
+    }
+  },[])
 
   useEffect(()=> {
    let timer = setTimeout(()=> {
@@ -49,7 +57,7 @@ function Detail(props) {
 
     return (
       <>
-        <div className="container">
+        <div className={"container start "+fade2}>
           {
             text == true ?
             <div className="alert alert-warning">
@@ -105,7 +113,22 @@ function TabContent({tab}){
   // }else if(tab == 2){
   //   return <div>내용2</div>
   // }//end of if
-  return [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab]
+  let [fade, setFade] = useState('')
+  useEffect(()=>{
+    setTimeout(()=>{//0.1초 후에 동작. 클린업 함수 동작후에 다시 style에 end를 붙이기 위해
+      setFade('end')
+    },100)
+   
+    return()=>{//클린 업 함수로 useEffect 동작하기 전에 먼저 동작함
+      setFade('')//end 스타일을 탈부착 하기 위해서
+    }
+  },[tab])
+
+  return(
+  <div className={"start "+fade}>
+    {[<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab]}
+  </div>
+  )
 }
 
   export default Detail;
