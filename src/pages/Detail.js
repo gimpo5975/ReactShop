@@ -97,7 +97,7 @@ function Detail(props) {
               <Nav.Link eventKey="link2" onClick={()=>setTab(2)}>2번</Nav.Link>
             </Nav.Item>
           </Nav>
-          <TabContent tab={tab}/>
+          <TabContent tab={tab} />
           {/* end of 탭 */}
         </div>
         {/* end of container */}
@@ -126,7 +126,7 @@ function TabContent({tab}){
 
   return(
   <div className={"start "+fade}>
-    {[<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab]}
+    {[<div>내용1</div>,<div>내용1</div>,<div>내용2</div>][tab]}
   </div>
   )
 }

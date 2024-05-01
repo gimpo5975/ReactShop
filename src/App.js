@@ -100,7 +100,7 @@ function App() {
           <Route path="one" element={<div>첫 주문시 양배추즙 서비스</div>}/>
           <Route path="two" element={<div>생일기념 쿠폰 받기</div>}/>
         </Route>
-
+        <Route path="/cart" element{<Cart/>}/>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
