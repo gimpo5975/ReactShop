@@ -8,6 +8,7 @@ import Card from "./Components/Card";
 import Page404 from "./Components/Page404";
 import Detail from "./pages/Detail";
 import axios from "axios";
+import Cart from "./pages/Cart";
 
 function App() {
   let [cloth, setCloth] = useState(data);
@@ -35,10 +36,10 @@ function App() {
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                navigate("/detail");
+                navigate("/cart");
               }}
             >
-              Detail
+              Cart
             </Nav.Link>
             <Nav.Link
               onClick={() => {
@@ -100,7 +101,7 @@ function App() {
           <Route path="one" element={<div>첫 주문시 양배추즙 서비스</div>}/>
           <Route path="two" element={<div>생일기념 쿠폰 받기</div>}/>
         </Route>
-        <Route path="/cart" element{<Cart/>}/>
+        <Route path="/cart" element={<Cart/>}/>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
